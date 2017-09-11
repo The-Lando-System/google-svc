@@ -47,6 +47,15 @@ app.get('/google/places/query/:location/:radius/:search_terms', function (req, r
 
 });
 
+app.get('/google/places/api-key', function (req, res) {
+  if (_placesApiKey) {
+    res.send({'api_key':_placesApiKey});
+  } else {
+    res.status(500);
+    res.send({'ERROR':'Could not get the api-key! Check to see that it is present in config.js'});
+  }
+});
+
 
 app.listen(3002, function () {
   console.log('google-svc app listening on port 3002!');
